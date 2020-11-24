@@ -16,6 +16,6 @@ urlpatterns = [
     path('noti/', include('noti.urls')),
     path('', HomeView.as_view(), name='home'),
     path('private/', PrivateView.as_view(), name='private'),
-    path('use/', UseView.as_view(), name='Use'),
+    path('use/', UseView.as_view(), name='use'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
