@@ -1,0 +1,43 @@
+{% extends 'admin/base_site.html' %}
+
+{% block title %}주문 {{order.id}}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+        <a href="{% url 'admin:order_order_changelist' %}">Orders</a> &rsaquo;
+        <a href="{% url 'admin:order_order_change' order.id %}">주문 {{order.id}}</a> &rsaquo;
+        자세히 보기
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>Order {{order.id}}</h1>
+    <ul class="object-tools">
+        <li>
+            <a href="#" onclick="window.print();">주문 프린트</a>
+        </li>
+    </ul>
+    <table>
+        <tr>
+            <th>Created</th>
+            <td>{{order.created}}</td>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <td>{{order.first_name}} {{order.last_name}}</td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td>{{order.email}}</td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td>{{order.address}} {{order.postal_code}} {{order.city}}</td>
+        </tr>
+        <tr>
+            <th>총 결제금액</th>
+            <td>{{order.get_total_price}}</td>
+        </tr>
+    </table>
+{% endblock %}

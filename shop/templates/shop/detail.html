@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% block title %}Product Detail{% endblock %}
+{% block content %}
+<style>
+    .list-group {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        padding-left: 0;
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 40px;
+    }
+
+    .list-group-item {
+        font-size: 20px;
+        color: #F25C05;
+        position: relative;
+        display: block;
+        background-color: #fff;,
+    }
+
+    .list-group-item:hover, .dropdown-toggle:hover, .dropdown-menu-a:hover{
+        color: #022873;
+        text-decoration:none
+    }
+
+    .col-2 {
+        max-width: 100%;
+        position: relative;
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    body {
+        margin: 0;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+        }
+
+    span.badge {
+        min-width: 3rem;
+        margin-left: 14px;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 26px;
+        height: 26px;
+        color: #ffffff;
+        background-color: #022873;
+        float: right;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .dropdown-menu {
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        color: #F25C05;
+        text-align: center;
+        list-style: none;
+        background-color: #fff;
+    }
+
+    .dropdown-menu li {
+        padding-bottom: 4px;
+        padding-top: 4px;
+        background-color: #fff;
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
+
+    .list-group-item{
+        width: 200px;
+        margin-left:20px;
+    }
+
+    .dropdown-toggle, .dropdown-menu-a {
+        color: #F25C05;
+    }
+
+    .dropdown-toggle {
+        text-decoration: none;
+    }
+
+    .spa{
+        font-size: 18px;
+        margin-right: 50px;
+    }
+
+    .col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 60%;
+    margin-left: 170px;
+}
+
+
+</style>
+{% load humanize %}
+<div class="col-2">
+    <div class="list-group">
+        <a href="/shop/" class="list-group-item">
+            All
+        </a>
+
+        <a href="/shop/%EC%8B%9D%EB%8B%A8/" class="list-group-item">
+            식단
+        </a>
+
+        <a href="/shop/%EC%9A%B4%EB%8F%99%EB%B3%B5/" class="list-group-item">
+            운동복
+        </a>
+
+        <a href="/shop/%ED%99%88%ED%8A%B8%EA%B8%B0%EA%B5%AC/" class="list-group-item">
+            홈트기구
+        </a>
+        <li class="dropdown list-group-item">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">고객지원<!-- <span class="caret"></span> --></a>
+            <ul class="dropdown-menu">
+            <li><a class="dropdown-menu-a" href="{% url 'noti:list' %}">공지사항</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="dropdown-menu-a" href="{% url 'faq:list' %}">FAQ</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a class="dropdown-menu-a" href="{% url 'qna:list' %}">Q&A</a></li>
+            </ul>
+        </li>
+    </div>
+</div>
+</div>
+    <div class="container">
+        <hr/>
+        <div class="row">
+            <div class="col-4" width="50%">
+                <br/><br/>
+                <img src="{{product.image.url}}" width="300px" height="300px" style="margin-left: 80px">
+            </div>
+            <div class="col">
+                <br/>
+                <h3 class="display-6">{{product.name}}</h3>
+                <hr/>
+                <p>
+                    {{product.description|linebreaksbr}}
+                </p>
+                <hr/>
+                <p >
+                    <span class="spa" > 가격 </span>
+                    {{product.price | floatformat:'0' | intcomma}} 원
+                </p>
+
+                <hr/>
+                <form action="{% url 'cart:product_add' product.id %}" method="post">  <!-- !!! -->
+                    {{add_to_cart}}                                                    <!-- !!! -->
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-primary btn-sm" value="장바구니 추가" style="background-color: #F25C05;
+                    border-color: #F25C05; color: #ffffff; font-size: 16px; float: right">
+                </form>
+            </div>
+        </div>
+        <hr/>
+        <div class="col-4" style="padding: 0px; margin: 0 auto; text-align: center;max-width: 100% " >
+            <p>{{product.meta_description|linebreaksbr}}</p><br/>
+            <img src="{{product.meta_image.url}}" style=" width: 100%"  >
+        </div>
+        <br/> <br/> <hr/> <br/>
+    </div>
+
+{% endblock %}

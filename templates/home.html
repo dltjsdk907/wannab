@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
+    <!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $('.slider').slider();
+    });
+</script>
+<style>
+        body, html{
+            margin:0; padding: 0;
+            position: relative;
+        }
+        .slider .indicators .indicator-item {
+          background-color: #666666;
+          border: 3px solid #ffffff;
+          -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+        .slider .indicators .indicator-item.active {
+          background-color: #ffffff;
+        }
+        .slider, .slides {
+         width: 100%;
+         height: 830px !important;
+         overflow: hidden;
+         margin: 0 auto;
+         position: relative;
+        }
+        .slider .indicators {
+          bottom: 100px;
+          z-index: 100;
+        }
+        .caption left-align{
+            margin-left: 600px;
+        }
+</style>
+</head>
+<body>
+<div class="slider" >
+    <ul class="slides">
+      <li>
+          <img src="../media/logo/main.jpg">
+          <div class="caption center-align">
+          <h2 style="margin-top: 200px" >For your Body!</h2>
+          <h5 class="light grey-text text-lighten-3">WannaB에서 만나보세요.</h5><br/><br/><br/>
+          <a href=" {% url 'shop:product_all' %}" class="{% if not current_category %}active{% endif %}"><h9 class="light grey-text text-lighten-3">사이트 바로가기</h9></a>
+        </div>
+      </li>
+      <li>
+        <img src="../media/logo/food.jpg">
+        <div  class="caption left-align" style="margin-left: 200px; margin-top: 200px">
+          <h3>다양한 다이어트 식단을 찾으시나요?</h3>
+          <h5 class="light grey-text text-lighten-3">WannaB에서 만나보세요.</h5><br/><br/><br/>
+          <a href="../shop/식단" class="{% if not current_category %}active{% endif %}">
+              <h9 class="light grey-text text-lighten-3">식단 바로가기</h9></a>
+        </div>
+      </li>
+      <li>
+        <img src="../media/logo/cloth.jpg">
+        <div class="caption right-align" style="margin-left: 200px; margin-top: 330px ">
+          <h3>다양한 운동복을 찾으시나요?</h3>
+          <h5 class="light grey-text text-lighten-3">WannaB에서 만나보세요.</h5><br/><br/><br/>
+          <a href="../shop/운동복" class="{% if not current_category %}active{% endif %}"><h9 class="light grey-text text-lighten-3">운동복 바로가기</h9></a>
+        </div>
+      </li>
+      <li>
+        <img src="../media/logo/homet.jpg">
+        <div class="caption center-align" style="margin-top: 200px">
+          <h3>다양한 트레이닝 기구를 찾으시나요?</h3>
+          <h5 class="light grey-text text-lighten-3">WannaB에서 만나보세요.</h5><br/><br/><br/>
+          <a href="../shop/홈트기구" class="{% if not current_category %}active{% endif %}"><h9 class="light grey-text text-lighten-3">홈트레이닝 기구 바로가기</h9></a>
+        </div>
+      </li>
+    </ul>
+</div>
+</body>
+</html>

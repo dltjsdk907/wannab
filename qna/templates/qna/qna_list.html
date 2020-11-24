@@ -1,0 +1,70 @@
+{% extends 'qna_base.html' %}
+{% block title %}Q&A List{% endblock %}
+    <style>
+    .btn-success, .btn-info {
+        background-color: #F25C05;
+    }
+
+    </style>
+{% block content %}
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="font-size: 16px">Q&A</th>
+                <th scope="col" style="font-size: 16px">제목</th>
+                <th scope="col" style="font-size: 16px">내용</th>
+                <th scope="col" style="font-size: 16px">아이디</th>
+                <th scope="col" style="font-size: 16px">수정</th>
+                <th scope="col" style="font-size: 16px">삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for qna in object_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'qna:detail' qna.id %}" target="_blank" style="font-size: 16px">{{qna.title}}</a></td>
+                <td><a href="{% url 'qna:detail' qna.id %}" target="_blank" style="font-size: 16px">{{qna.contents}}</a></td>
+                <td><a href="{% url 'qna:detail' qna.id %}" target="_blank" style="font-size: 16px">{{qna.owner}}</a></td>
+                <td><a href="{% url 'qna:update' qna.id %}" class="btn btn-success btn-sm" id="buttons" style="font-size: 16px">수정</a></td>
+                <td><a href="{% url 'qna:delete' qna.id %}" class="btn btn-danger btn-sm" style="font-size: 16px">삭제</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="btn-group">
+        <a href="{% url 'qna:add' %}" class="btn btn-info" style="border-color: #022873; background-color: #022873; font-size: 20px" >Q&A 작성</a>
+
+    </div>
+{% endblock %}
+{% block pagination %}
+    {% if is_paginated %}
+    <ul class="pagination justify-content-center pagination-sm">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="{% url 'qna:list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1" style="font-size: 16px">이전으로</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" style="font-size: 16px">이전으로</a>
+            </li>
+        {% endif %}
+
+        {% for object in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == forloop.counter %}disabled{% endif %}" style="font-size: 16px">
+                <a class="page-link" href="{{ request.path }}?page={{ forloop.counter }}" style="font-size: 16px">{{ forloop.counter }}</a>
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="{% url 'qna:list' %}?page={{ page_obj.next_page_number }}"style="font-size: 16px">다음</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" style="font-size: 16px">다음</a>
+            </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+{% endblock %}

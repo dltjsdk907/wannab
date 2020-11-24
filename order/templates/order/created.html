@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}주문 성공{% endblock %}
+
+{% block content %}
+<br/> <br/> <br/>
+    <div class="row">
+
+        <div class="col" style="text-align: center">
+            <div class="alert alert-success" role="alert" style="font-size: 20px; background-color: #F25C05; color: #ffffff;">
+                <br/>
+                주문이 정상적으로 처리 되었습니다! <br/>
+                주문 번호는 <strong>{{order.id}} 번 </strong> 입니다. <br/><br/>
+                Wanna B를 이용해주셔서 감사합니다 :D <br/><br/>
+            </div>
+        </div>
+    </div>
+{% endblock %}

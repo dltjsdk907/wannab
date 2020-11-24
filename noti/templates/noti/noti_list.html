@@ -1,0 +1,59 @@
+{% extends 'noti_base.html' %}
+{% block title %}공지사항{% endblock %}
+
+<style>
+</style>
+{% block content %}
+
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="font-size: 16px">공지사항</th>
+                <th scope="col" style="font-size: 16px">제목</th>
+                <th scope="col" style="font-size: 16px">내용</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for noti in object_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'noti:detail' pk=noti.id %}" target="_blank" style="font-size: 16px">{{noti.title}}</a></td>
+                <td><a href="{% url 'noti:detail' pk=noti.id %}" target="_blank" style="font-size: 16px">{{noti.contents}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block pagination %}
+    {% if is_paginated %}
+    <ul class="pagination justify-content-center pagination-sm">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="{% url 'noti:list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1" style="font-size: 16px">이전으로</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" style="font-size: 16px">이전으로</a>
+            </li>
+        {% endif %}
+
+        {% for object in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == forloop.counter %}disabled{% endif %}">
+                <a class="page-link" href="{{ request.path }}?page={{ forloop.counter }}" style="font-size: 16px">{{ forloop.counter }}</a>
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="{% url 'noti:list' %}?page={{ page_obj.next_page_number }}" style="font-size: 16px">다음</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" style="font-size: 16px">다음</a>
+            </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+{% endblock %}

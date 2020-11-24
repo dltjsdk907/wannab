@@ -1,0 +1,23 @@
+{% extends 'faq_base.html' %}
+{% block title %}FAQ Detail{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="font-size: 16px">번호</th>
+            <th style="font-size: 16px">제목</th>
+            <th style="font-size: 16px">내용</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="font-size: 16px">{{object.id}}</td>
+            <td style="font-size: 16px">{{object.title}}</td>
+            <td style="white-space: pre; font-size: 16px">{{object.contents}}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
+
+

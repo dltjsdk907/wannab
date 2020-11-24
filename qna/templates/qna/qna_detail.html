@@ -1,0 +1,39 @@
+{% extends 'qna_base.html' %}
+{% block title %}Q&A Detail{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th style="font-size: 16px">제목</th>
+        <th style="font-size: 16px">내용</th>
+        <th style="font-size: 16px">아이디</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="font-size: 16px">{{object.title}}</td>
+        <td style="white-space: pre; font-size: 16px" >{{object.contents}}</td>
+        <td style="font-size: 16px">{{object.owner}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/><br/><hr/><br/><br/>
+<div class="bookmark" style="width: 90%;">
+    <form method="POST" action="/qna/newreply" style="margin-left: 30px">
+        {% csrf_token %}
+        <input type="hidden" value="{{qna.id}}" name="qna" >
+        댓글 작성 :  <input type="text" name="comment_body" style="margin-left: 20px; width: 70%" />
+        <a href="{% url 'qna:list'%}" class="btn btn-light" style="background-color: #022873; border-color: #022873;
+        color: #ffffff; float: right">이전으로</a>
+        <button type="submit" class="btn btn-secondary" style="color: #ffffff; background-color: #F25C05;
+        border-color: #F25C05; margin-right: 10px; float: right" >작성</button>
+    </form>
+    <br />
+    {% for comment in  qna.comments.all %}
+    <p style="margin-top: 10px"> <span style="margin-left: 30px"> {{comment.comment_user}} </span> : {{ comment.comment_body  }} </p>
+    {% endfor %}
+</div>
+{% endblock %}
+
