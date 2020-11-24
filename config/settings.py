@@ -15,10 +15,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'j3y#elp0^sd9cb$)z(6@#)e9*h*6bf7a+_94qx@igqh66$x7hj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*", "http://localhost:8000"]
-
+ALLOWED_HOSTS = ["*", "http://localhost:8000", "http://wannab.pythonanywhere.com/"]
 
 
 # Application definition
