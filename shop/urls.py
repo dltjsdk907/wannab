@@ -12,7 +12,4 @@ urlpatterns = [
          name='product_in_category'),   # 카테고리 지정하여, 해당 상품을 조회
     path('<int:id>/<product_slug>/', product_detail,
          name='product_detail'),        # 상품 지정하여, 해당 상품을 조회
-    path('private/', PrivateView.as_view(), name='private'),
-    path('use/', UseView.as_view(), name='use'),
-
 ]

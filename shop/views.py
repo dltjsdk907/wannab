@@ -34,16 +34,3 @@ def product_detail(request, id, product_slug=None):
                                                 'add_to_cart': add_to_cart,
                                                 'cart': cart})
 
-
-class PrivateView(TemplateView):
-    template_name = 'private.html'
-
-    def __int__(self):
-        pass
-
-
-class UseView(TemplateView):
-    template_name = 'use.html'
-
-    def __int__(self):
-       pass
