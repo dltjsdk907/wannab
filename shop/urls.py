@@ -14,4 +14,5 @@ urlpatterns = [
          name='product_detail'),        # 상품 지정하여, 해당 상품을 조회
     path('shop/private/', PrivateView.as_view(), name='private'),
     path('shop/use/', UseView.as_view(), name='use'),
+
 ]
