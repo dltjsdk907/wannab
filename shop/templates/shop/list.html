@@ -137,6 +137,7 @@
             <a href="/shop/홈트기구/" class="list-group-item">
                 홈트기구
             </a>
+
             <li class="dropdown list-group-item">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">고객지원</a>
                 <ul class="dropdown-menu">
@@ -174,4 +175,41 @@
         </div>
     </div>
 
+<div class="box5" style="margin: 0 auto; width: 100%" >
+   <!-- Pagination -->
+    {% if products.has_other_pages %}
+   <nav class="pagination" aria-label="Page navigation" style="background-color: #F25C05; width: 40%; margin: 0 auto; ">
+      <ul class="pagelist" style="text-align: center; margin: 0 auto;" >
+          {% if products.has_previous %}
+           <li>
+              <a style="text-decoration: none; color: #000; font-size: 30px" href="?page={{ products.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+             </a>
+         </li>
+          {% else %}
+          <li><span>&laquo;</span></li>
+          {% endif %}
+
+          {% for i in products.paginator.page_range %}
+              {% if products.number == i %}
+                  <li  style="font-size: 30px"><span>{{ i }}</span></li>
+              {% else %}
+                  <li><a style="text-decoration: none; color: #000; font-size: 30px" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+          {% endfor %}
+
+          {% if products.has_next %}
+          <li>
+              <a style="text-decoration: none; color: #000; font-size: 30px" href="?page={{products.next_page_number}}" aria-label="Next">
+                 <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+          {% else %}
+              <li><span>&raquo;</span></li>
+          {% endif %}
+      </ul>
+   </nav>
+
+        {% endif %}
+</div>
 {% endblock %}
