@@ -121,6 +121,8 @@
     .card-img-top {
         margin: 0 auto;
     }
+
+
 </style>
     {% load humanize %}
     <div class="col-2">
@@ -175,10 +177,10 @@
         </div>
     </div>
 
-<div class="box5" style="margin: 0 auto; width: 100%" >
+<div class="box5" style="margin: 0 auto; width: 100%; border: none" >
    <!-- Pagination -->
     {% if products.has_other_pages %}
-   <nav class="pagination" aria-label="Page navigation" style="background-color: #F25C05; width: 40%; margin: 0 auto; ">
+   <nav class="pagination" aria-label="Page navigation" style="background-color: #ffffff; width: 40%; margin: 0 auto; color: #F25C05; border: none; box-shadow: none; font-size: 20px">
       <ul class="pagelist" style="text-align: center; margin: 0 auto;" >
           {% if products.has_previous %}
            <li>
